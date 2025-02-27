@@ -8,7 +8,13 @@ export default defineConfig({
     }),
   ],
   server: {
-    allowedHosts: ["all"],
     port: 3000,
+  },
+  preview: {
+    port: 3000,
+    host: true, // This enables listening on all addresses
+    strictPort: true,
+    cors: true,
+    allowedHosts: true,
   },
 });
