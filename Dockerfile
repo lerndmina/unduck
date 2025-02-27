@@ -1,33 +1,32 @@
-# Use the official Bun image as the base image
+# Build stage
 FROM oven/bun:latest as build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the package.json file
-COPY package.json ./
+# Copy package.json and install dependencies
+COPY package.json bun.lockb* ./
+RUN bun install --frozen-lockfile
 
-# Install dependencies with Bun
-RUN bun install
-
-# Copy the rest of the application code
+# Copy the rest of the application
 COPY . .
 
 # Build the application
 RUN bun run build
 
-# Use a smaller image for the final container
-FROM oven/bun:latest
+# Production stage
+FROM oven/bun:latest as production
 
 WORKDIR /app
 
-# Copy built assets from the build stage
+# Copy built files from the build stage
 COPY --from=build /app/dist ./dist
-COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./
 
-# Expose the port that the app runs on
+# Install only production dependencies
+RUN bun install --production
+
+# Expose port
 EXPOSE 3000
 
-# Command to run the application
-CMD ["bun", "run", "start"]
+# Start the application
+CMD ["bun", "preview", "--host", "0.0.0.0"]
