@@ -29,4 +29,4 @@ RUN bun install --production
 EXPOSE 3000
 
 # Start the application
-CMD ["bun", "preview", "--host", "0.0.0.0"]
+CMD ["bun", "start"]
