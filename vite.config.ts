@@ -7,4 +7,8 @@ export default defineConfig({
       registerType: "autoUpdate",
     }),
   ],
+  server: {
+    allowedHosts: true,
+    port: 3000,
+  },
 });

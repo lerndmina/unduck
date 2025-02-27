@@ -7,13 +7,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "vite preview --port 3000 --host"
+    "start": "bun preview"
   },
   "devDependencies": {
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "serve": "^14.2.4",
     "vite-plugin-pwa": "^0.21.1"
   }
 }
