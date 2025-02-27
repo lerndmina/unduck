@@ -8,7 +8,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    allowedHosts: true,
+    allowedHosts: ["all"],
     port: 3000,
   },
 });

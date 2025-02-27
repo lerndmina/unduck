@@ -21,6 +21,7 @@ WORKDIR /app
 # Copy built files from the build stage
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package.json ./
+COPY --from=build /app/vite.config.ts ./
 
 # Install only production dependencies
 RUN bun install --production
